@@ -2,6 +2,7 @@ from tkinter import *
 from scapy.all import *
 from scapy.layers.inet import IP
 
+packet_count = 0
 # Fonction pour l'analyse et la mise à jour du tableau de bord
 def analyze_packet(packet):
     # Analyse du paquet - exemple : identifier le protocole
@@ -18,6 +19,10 @@ def analyze_packet(packet):
     # Mise à jour du tableau de bord en temps réel
     text.insert(END, f"Paquet {protocol}\n")
     text.see(END)  # Faites défiler le texte pour afficher le dernier paquet
+
+    global packet_count
+    packet_count += 1
+    print(f"Packet #{packet_count}: {packet.summary()} ")
 
 # Fonction pour la capture de paquets en temps réel
 def start_capture():
